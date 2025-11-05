@@ -14,28 +14,7 @@ pipeline {
                 checkout scm
             }
         }
-
-        stage('SAST') {
-            steps {
-                sh 'echo Running SAST scan...'
-            }
-        }
-
-	stage('SonarQube Analysis') {
-            agent {
-                label 'Thing-1'
-            }
-            steps {
-                script {
-                    def scannerHome = tool 'SonarQube-Scanner'
-                    withSonarQubeEnv('SonarQube-installation') {
-                        sh "${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=gameapp \
-                            -Dsonar.sources=."
-                    }
-                }
-            }
-        }
+		
 
       stage('BUILD-AND-TAG') {
             agent {
@@ -66,23 +45,6 @@ pipeline {
             }
         }
 
-        stage('SECURITY-IMAGE-SCANNER') {
-            steps {
-                sh 'echo Scanning Docker image for vulnerabilities...'
-            }
-        }
-
-        stage('Pull-image-server') {
-            steps {
-                sh 'echo Pulling image on server...'
-            }
-        }
-
-        stage('DAST') {
-            steps {
-                sh 'echo Performing DAST scan...'
-            }
-        }
 
         stage('DEPLOYMENT') {    
             agent {
