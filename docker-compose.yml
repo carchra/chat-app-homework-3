@@ -2,13 +2,7 @@ version: '3.3'
 services:
   jenkins:
     image: batinthehat/homework-03:latest
-    privileged: true
-    user: root
+    build: .
     ports:
-      - '8080:8080'
-      - '8443:8443'
-      - '4009:4009'
-    container_name: chat-app
-    volumes:
-      - /home/jenkins/docker-jenkins/jenkins_data:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
+      - 3700:3700
+    container_name: chat-app-version-two
