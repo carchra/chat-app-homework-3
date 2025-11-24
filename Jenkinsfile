@@ -79,5 +79,26 @@ pipeline {
                 echo 'Deployment completed successfully!'
             }
         }
+
+
+		stage('SonarQube Analysis') {
+            agent {
+                label 'appserver'
+            }
+            steps {
+                checkout scmGit(
+                    branches: [[name: 'main']],
+                    userRemoteConfigs: [[url: 'https://github.com/url.git']]
+                )
+                script {
+                    def scannerHome = tool 'SonarQube-Scanner'
+                    withSonarQubeEnv('SonarQube-installations') {
+                        sh "${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=chatapp \
+                            -Dsonar.sources=."
+                    }
+                }
+            }
+        }
     }  
 }  
