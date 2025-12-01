@@ -92,7 +92,7 @@ pipeline {
                 )
                 script {
                     def scannerHome = tool 'SonarQube-Scanner'
-                    withSonarQubeEnv('SonarQube Scanner for Jenkins') {
+                    withSonarQubeEnv('SonarQube-installation') {
                         sh "${scannerHome}/bin/sonar-scanner \
                             -Dsonar.projectKey=chatapp \
                             -Dsonar.sources=."
