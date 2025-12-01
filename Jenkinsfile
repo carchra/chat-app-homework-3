@@ -83,7 +83,7 @@ pipeline {
 
 		stage('SonarQube Analysis') {
             agent {
-                label 'appserver'
+                label 'Thing-1'
             }
             steps {
                 checkout scmGit(
