@@ -91,7 +91,7 @@ pipeline {
                     userRemoteConfigs: [[url: 'https://github.com/carchra/chat-app-homework-3.git']]
                 )
                 script {
-                    def scannerHome = tool 'SonarQube Scanner'
+                    def scannerHome = tool 'SonarQube-Scanner'
                     withSonarQubeEnv('SonarQube-installations') {
                         sh "${scannerHome}/bin/sonar-scanner \
                             -Dsonar.projectKey=chatapp \
