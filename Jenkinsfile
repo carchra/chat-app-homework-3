@@ -88,7 +88,7 @@ pipeline {
             steps {
                 checkout scmGit(
                     branches: [[name: 'main']],
-                    userRemoteConfigs: [[url: 'https://github.com/url.git']]
+                    userRemoteConfigs: [[url: 'https://github.com/carchra/chat-app-homework-3.git']]
                 )
                 script {
                     def scannerHome = tool 'SonarQube-Scanner'
